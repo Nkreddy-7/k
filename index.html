@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Kavya </title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('background.jpg') center/cover no-repeat, linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb);
+            background-blend-mode: overlay;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 90%;
+            background:transparent;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: #ff69b4;
+            color: #0a0404;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #ff85c1;
+        }
+
+        .message {
+            display: none;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #ffefd5;
+        }
+
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(255, 105, 180, 0.6);
+            transform: rotate(45deg);
+            animation: float 6s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -50%;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -50%;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            button {
+                font-size: 0.8rem;
+            }
+        }
+        .message a{
+            color: rgb(11, 3, 11);
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1>Enter Password</h1>
+        <input type="password" id="password" placeholder="Enter the secret password">
+        <button onclick="validatePassword()">Submit</button>
+        <div class="message" id="message">
+            <a href="https://1drv.ms/f/c/89c68e0a06a3e722/Eoo_UCuiIbxFmZw-FOIvLyIBmfN3AgA00dVFOpJnLSWV-A">Click here ❤️</a>
+        </div>
+    </div>
+    <div class="floating-hearts"></div>
+
+    <script>
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const message = document.getElementById('message');
+
+            if (password === '30279') {
+                message.style.display = 'block';
+                generateHearts();
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+
+        function generateHearts() {
+            for (let i = 0; i < 20; i++) {
+                createHeart();
+            }
+            setInterval(createHeart, 300);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 4 + 's';
+            document.querySelector('.floating-hearts').appendChild(heart);
+
+            setTimeout(() => heart.remove(), 6000);
+        }
+    </script>
+</body>
+
+</html>
